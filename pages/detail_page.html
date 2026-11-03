@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍ | វណ្ណស៊ី &amp; កាន្និកា</title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="✨ពិធីមង្គលការ ស៊ុន វណ្ណស៊ី &amp; លុយ កាន្និកា✨" />
+    <meta property="og:description" content="សូមគោរពអញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ក្នុងពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍ នៅថ្ងៃអាទិត្យ ទី១០ ខែមករា ឆ្នាំ ២០២៧" />
+    <meta property="og:image" content="../assets/decorations/banner.jpg" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="../assets/decorations/logo_sak_green_white.webp">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dangrek&family=Great+Vibes&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Kdam+Thmor+Pro&family=Moul&family=Preahvihear&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Floating Falling Petals Canvas -->
+    <canvas id="petals-canvas"></canvas>
+
+    <!-- Background Music -->
+    <audio id="background-music" loop preload="auto">
+        <source src="../assets/music/young_and_beautiful.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Audio Toggle Button -->
+    <button id="music-toggle" class="music-toggle" aria-label="Toggle background music">
+        <i class="fas fa-music"></i>
+        <span class="music-wave">
+        </span>
+    </button>
+
+    <!-- Floating Back to Cover Button -->
+    <a href="../index.html" class="floating-back-btn" title="ត្រឡប់ទៅទំព័រមុខ">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- Top Floral Header Decoration -->
+    <div class="decor-top-header">
+        <img src="../assets/decorations/header_green_flower.webp" alt="Header Green Flower">
+    </div>
+
+    <!-- MAIN DETAIL CONTAINER -->
+    <div class="main-wrapper">
+        <!-- ============================================== -->
+        <!-- SECTION 1: HEADER & LOGO                       -->
+        <!-- ============================================== -->
+        <header class="detail-header">
+            <div class="logo-box">
+                <img src="../assets/decorations/logo_sak_green_white.png" alt="Wedding Monogram" class="detail-logo">
+            </div>
+            <div class="header-subtitle">ពិធីសិរីសួស្តី</div>
+            <h1 class="header-primary-title">សិរីមង្គលអាពាហ៍ពិពាហ៍</h1>
+            <div class="wedding-english-title">Wedding Celebration</div>
+            <div class="header-divider">
+                <span class="line"></span>
+                <span class="diamond"><i class="fas fa-gem"></i></span>
+                <span class="line"></span>
+            </div>
+        </header>
+
+        <!-- ============================================== -->
+        <!-- SECTION 2: BOTH PARENTS (មាតាបិតាទាំងសងខាង)     -->
+        <!-- ============================================== -->
+        <section class="section-card parents-card">
+            <div class="card-title-pill">សិរីសួស្តីមាតាបិតាទាំងសងខាង</div>
+            
+            <div class="parents-grid">
+                <!-- Groom's Parents -->
+                <div class="parents-column groom-side">
+                    <div class="side-tag">ខាងកូនប្រុស</div>
+                    <div class="parent-entry">
+                        <span class="parent-role">លោក</span>
+                        <span class="parent-name">ហួរ វន្នី</span>
+                    </div>
+                    <div class="parent-entry">
+                        <span class="parent-role">លោកស្រី</span>
+                        <span class="parent-name">អ៊ឹង សុខណាត</span>
+                    </div>
+                </div>
+
+                <!-- Center Wedding Knot / Heart -->
+                <div class="parents-divider">
+                    <div class="knot-circle">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+
+                <!-- Bride's Parents -->
+                <div class="parents-column bride-side">
+                    <div class="side-tag">ខាងកូនស្រី</div>
+                    <div class="parent-entry">
+                        <span class="parent-role">លោក</span>
+                        <span class="parent-name">ស៊ូ ស៊ីកន្និដ្ឋា</span>
+                    </div>
+                    <div class="parent-entry">
+                        <span class="parent-role">លោកស្រី</span>
+                        <span class="parent-name">ស៊ូ ស៊ីវណ្ណនរ៉ា</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 3: THE COUPLE (កូនប្រុស & កូនស្រី)     -->
+        <!-- ============================================== -->
+        <section class="section-card couple-showcase-card">
+            <div class="couple-grid">
+                <!-- Groom -->
+                <div class="couple-profile">
+                    <div class="arch-frame">
+                        <img src="../assets/profiles/groom_vannshee.jpg" alt="Groom Sun Vannshee" class="profile-img">
+                        <div class="arch-gold-border"></div>
+                    </div>
+                    <div class="profile-info">
+                        <span class="profile-role">កូនប្រុសនាម</span>
+                        <h2 class="profile-khmer-name">ស៊ុន វណ្ណស៊ី</h2>
+                        <span class="profile-en-name">Sun Vannshee</span>
+                    </div>
+                </div>
+
+                <!-- Center Monogram Accent -->
+                <div class="couple-center-ornament">
+                    <div class="rings-badge">
+                        <i class="fas fa-ring ring-1"></i>
+                        <i class="fas fa-ring ring-2"></i>
+                    </div>
+                    <div class="ampersand-sign">&amp;</div>
+                </div>
+
+                <!-- Bride -->
+                <div class="couple-profile">
+                    <div class="arch-frame">
+                        <img src="../assets/profiles/bride_kanika.jpg" alt="Bride Luy Kanika" class="profile-img">
+                        <div class="arch-gold-border"></div>
+                    </div>
+                    <div class="profile-info">
+                        <span class="profile-role">កូនស្រីនាម</span>
+                        <h2 class="profile-khmer-name">លុយ កាន្និកា</h2>
+                        <span class="profile-en-name">Luy Kanika</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 4: INVITATION WORDING & DATE/TIME      -->
+        <!-- ============================================== -->
+        <section class="section-card invitation-statement-card">
+            <div class="card-ornament-top"><i class="fas fa-feather-alt"></i></div>
+            
+            <h2 class="formal-invite-title">មានកិត្តិយសសូមគោរពអញ្ជើញ</h2>
+
+            <div id="dynamic-guest-block" class="personalized-guest-block">
+                <span class="to-label">សូមគោរពជូនចំពោះ</span>
+                <div id="guest-target-name" class="guest-target-name">ភ្ញៀវកិត្តិយស</div>
+            </div>
+
+            <p class="formal-text">
+                សម្តេច ទ្រង់ ឯកឧត្តម លោកអ្នកឧកញ៉ា ឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា ចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ដើម្បីប្រសិទ្ធិពរជ័យ សិរីសួស្ដីជ័យមង្គល ក្នុងពិធីមង្គលអាពាហ៍ពិពាហ៍របស់យើងខ្ញុំ។
+            </p>
+
+            <div class="date-highlight-box">
+                <div class="highlight-date-khmer">
+                    ថ្ងៃអាទិត្យ ទី១០ ខែមករា ឆ្នាំ ២០២៧
+                </div>
+                <div class="highlight-lunar-date">
+                    ត្រូវនឹងថ្ងៃទី ៣កើត ខែបុស្ស ឆ្នាំមមី អដ្ឋស័ក ព.ស ២៥៧០
+                </div>
+                <div class="highlight-time">
+                    <i class="far fa-clock"></i> វេលាម៉ោង ០៥:០០ ល្ងាច
+                </div>
+                <div class="highlight-venue">
+                    <i class="fas fa-map-marker-alt"></i> នៅ សណ្ឋាគារភ្នំប្រុស ( អគារ B )
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 5: OFFICIAL INVITATION CARD (BANNER)   -->
+        <!-- ============================================== -->
+        <section class="section-card banner-invitation-card">
+            <div class="card-title-pill">
+                <i class="fas fa-envelope-open-text"></i> លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍
+            </div>
+            <p class="banner-card-subtitle">Official Wedding Invitation</p>
+
+            <div class="banner-preview-box" onclick="openBannerModal();" role="button" tabindex="0" aria-label="ចុចពង្រីកមើលសំបុត្រអាពាហ៍ពិពាហ៍">
+                <div class="banner-img-frame">
+                    <img src="../assets/decorations/banner.jpg" alt="លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍ ស៊ុន វណ្ណស៊ី &amp; លុយ កាន្និកា" class="banner-display-img" loading="lazy">
+                    <div class="banner-zoom-trigger">
+                        <span class="zoom-badge-btn">
+                            <i class="fas fa-search-plus"></i> ចុចពង្រីកមើលច្បាស់
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="banner-interaction-hint">
+                <i class="fas fa-hand-pointer"></i> ចុចលើរូបភាពដើម្បីពង្រីក និងអានលម្អិត
+            </p>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 6: WEDDING AGENDA (កម្មវិធីមង្គលការ)     -->
+        <!-- ============================================== -->
+        <section class="section-card timeline-card">
+            <div class="card-title-pill">
+                <i class="fas fa-list-ul"></i> កម្មវិធីសិរីសួស្តីអាពាហ៍ពិពាហ៍
+            </div>
+            <div class="timeline-day-badge">
+                ថ្ងៃអាទិត្យ ទី១០ ខែមករា ឆ្នាំ ២០២៧
+            </div>
+
+            <div class="timeline-vertical">
+                <!-- Step 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-handshake"></i></div>
+                    <div class="timeline-box">
+                        <div class="timeline-time">ម៉ោង ០៦:3០ ព្រឹក</div>
+                        <h3 class="timeline-title">ជួបជុំសាច់ញាតិ និងភ្ញៀវកិត្តិយស ដើម្បីរៀបចំហែជំនូន</h3>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-walking"></i></div>
+                    <div class="timeline-box">
+                        <div class="timeline-time">ម៉ោង ០៧:០០ ព្រឹក</div>
+                        <h3 class="timeline-title">ពិធីហែជំនូន កំណត់ចូលរោងជ័យ</h3>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-utensils"></i></div>
+                    <div class="timeline-box">
+                        <div class="timeline-time">ម៉ោង ០៧:២០ ព្រឹក</div>
+                        <h3 class="timeline-title">អញ្ជើញភ្ញៀវកិត្តិយសពិសាអាហារពេលព្រឹក</h3>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-apple-whole"></i></div>
+                    <div class="timeline-box">
+                        <div class="timeline-time">ម៉ោង ០៨:០០ ព្រឹក</div>
+                        <h3 class="timeline-title">និយាយជើងការ រៀបរាប់ផ្លែឈើ</h3>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-cut"></i></div>
+                    <div class="timeline-box">
+                        <div class="timeline-time">ម៉ោង ០៩:៣០ ព្រឹក</div>
+                        <h3 class="timeline-title">ពិធីកាត់សក់បង្កក់សិរី កូនប្រុសកូនស្រី</h3>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-hands-praying"></i></div>
+                    <div class="timeline-box">
+                        <div class="timeline-time">ម៉ោង ១០:៣០ ព្រឹក</div>
+                        <h3 class="timeline-title">ពិធីសំពះផ្ទឹម បង្វិលពពិល សែនចងដៃ បាចផ្កាស្លា ព្រះថោងតោងស្បៃ</h3>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-utensils"></i></div>
+                    <div class="timeline-box">
+                        <div class="timeline-time">ម៉ោង ១១:៣០ ថ្ងៃត្រង់</div>
+                        <h3 class="timeline-title">អញ្ជើញភ្ញៀវកិត្តិយសពិសាភោជនាអាហារពេលថ្ងៃត្រង់</h3>
+                    </div>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fa-solid fa-person-praying"></i></div>
+                    <div class="timeline-box">
+                        <div class="timeline-time">ម៉ោង ០២:៣០ ថ្ងៃត្រង់</div>
+                        <h3 class="timeline-title">ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត</h3>
+                    </div>
+                </div>
+
+                <!-- Step 9 (Highlight Reception) -->
+                <div class="timeline-item highlight-item">
+                    <div class="timeline-dot highlight-dot"><i class="fas fa-champagne-glasses"></i></div>
+                    <div class="timeline-box highlight-box">
+                        <div class="timeline-time">ម៉ោង ០៥:០០ ល្ងាច</div>
+                        <h3 class="timeline-title">អញ្ជើញភ្ញៀវកិត្តិយសពិសាភោជនាអាហារពេលល្ងាច</h3>
+                        <p class="timeline-desc">ទទួលភ្ញៀវកិត្តិយសពិសាភោជនាអាហារ និងរាំលេងកម្សាន្ត</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 6: DRESS CODE (ពណ៌សម្លៀកបំពាក់)         -->
+        <!-- ============================================== -->
+        <section class="section-card dresscode-card">
+            <div class="card-title-pill">
+                <i class="fas fa-vest"></i> ពណ៌សម្លៀកបំពាក់ (Dress Code)
+            </div>
+            <div class="dresscode-sub">Formal / Evening Wear</div>
+
+            <div class="dresscode-columns">
+                <!-- Female -->
+                <div class="dresscode-group">
+                    <div class="group-label"><i class="fas fa-venus"></i> សម្រាប់នារី</div>
+                    <div class="swatches-row">
+                        <div class="swatch-item">
+                            <span class="color-circle" style="background-color: #bbdefb;"></span>
+                            <span class="swatch-name">Light Blue</span>
+                        </div>
+                        <div class="swatch-item">
+                            <span class="color-circle" style="background-color: #3498db;"></span>
+                            <span class="swatch-name">Sky Blue</span>
+                        </div>
+                        <div class="swatch-item">
+                            <span class="color-circle" style="background-color: #e9e1d2;"></span>
+                            <span class="swatch-name">Champagne</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Male -->
+                <div class="dresscode-group">
+                    <div class="group-label"><i class="fas fa-mars"></i> សម្រាប់បុរស</div>
+                    <div class="swatches-row">
+                        <div class="swatch-item">
+                            <span class="color-circle" style="background-color: #516cbd;"></span>
+                            <span class="swatch-name">Royal Blue</span>
+                        </div>
+                        <div class="swatch-item">
+                            <span class="color-circle" style="background-color: #122c4f;"></span>
+                            <span class="swatch-name">Navy Blue</span>
+                        </div>
+                        <div class="swatch-item">
+                            <span class="color-circle" style="background-color: #e9e1d2;"></span>
+                            <span class="swatch-name">Champagne</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 7: LOCATION & INTERACTIVE MAP           -->
+        <!-- ============================================== -->
+        <section class="section-card location-card">
+            <div class="card-title-pill">
+                <i class="fas fa-location-dot"></i> ទីតាំងកម្មវិធី &amp; ផែនទី
+            </div>
+
+            <h3 class="venue-main-title">សណ្ឋាគារភ្នំប្រុស ( អគារ B )</h3>
+
+            <!-- Google Map Iframe -->
+            <div class="map-frame-wrapper">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d709.1846487867908!2d105.46386699094779!3d11.993104040661713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310c6baea972b439%3A0xeed109ef873e25f4!2zUGhub20gUHJvcyBIb3RlbCAtIOGen-GejuGfkuGei-GetuGeguGetuGemuGel-GfkuGek-GfhuGelOGfkuGemuGeu-Genw!5e1!3m2!1sen!2skh!4v1793715940792!5m2!1sen!2skh" 
+                    width="100%"
+                    height="260"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- Direct Map & Contact Buttons -->
+            <div class="location-actions">
+                <a href="https://maps.app.goo.gl/157uF76dzQ45o6ucA" target="_blank" rel="noopener" class="btn-navigate">
+                    <i class="fas fa-diamond-turn-right"></i> បើកក្នុង Google Maps
+                </a>
+            </div>
+
+            <div class="contact-contacts-row">
+                <span class="contact-label"><i class="fas fa-phone-alt"></i> ទំនាក់ទំនង:</span>
+                <div class="phones-wrap">
+                    <a href="tel:070535190" class="phone-link">077 672 119</a>
+                    <span class="phone-sep">/</span>
+                    <a href="tel:099914604" class="phone-link">012 262 814</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 8: PHOTO GALLERY (កម្រងរូបភាព)           -->
+        <!-- ============================================== -->
+        <section class="section-card gallery-card">
+            <div class="card-title-pill">
+                <i class="fas fa-images"></i> កម្រងរូបភាពអនុស្សាវរីយ៍
+            </div>
+            <p class="gallery-subtitle">Our Precious Moments</p>
+
+            <div class="gallery-grid" id="wedding-gallery">
+                <!-- 10 Real Pre-wedding Photos -->
+                <div class="gallery-item" onclick="openLightbox(0);">
+                    <img src="../assets/photos/our_photo_8.jpg" alt="Wedding Photo 1" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1);">
+                    <img src="../assets/photos/our_photo_6.jpg" alt="Wedding Photo 2" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2);">
+                    <img src="../assets/photos/our_photo_3.jpg" alt="Wedding Photo 3" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3);">
+                    <img src="../assets/photos/our_photo_9.jpg" alt="Wedding Photo 4" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4);">
+                    <img src="../assets/photos/our_photo_1.jpg" alt="Wedding Photo 5" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5);">
+                    <img src="../assets/photos/our_photo_2.jpg" alt="Wedding Photo 6" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6);">
+                    <img src="../assets/photos/our_photo_4.jpg" alt="Wedding Photo 7" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(7);">
+                    <img src="../assets/photos/our_photo_5.jpg" alt="Wedding Photo 8" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(8);">
+                    <img src="../assets/photos/our_photo_11.jpg" alt="Wedding Photo 9" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(9);">
+                    <img src="../assets/photos/our_photo_12.jpg" alt="Wedding Photo 10" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 9: THANK YOU MESSAGES        -->
+        <!-- ============================================== -->
+        <section class="section-card thankyou-card">
+            <div class="card-ornament-top"><i class="fas fa-heart"></i></div>
+            <h3 class="message-title">សេចក្តីថ្លែងអំណរគុណ</h3>
+            <p class="message-body">
+                ខ្ញុំបាទ នាងខ្ញុំជាមាតាបិតា កូនប្រុស កូនស្រី សូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅ ចំពោះវត្តមានដ៏ឧត្តុង្គឧត្តម ក្នុងពិធីសិរីមង្គល អាពាហ៍ពិពាហ៍កូនប្រុស កូនស្រី របស់យើងខ្ញុំ។
+            </p>
+            <p class="message-wish">
+                សូមគោរពជូនពរ សម្តេច ទ្រង់ ឯកឧត្តម លោកអ្នកឧកញ៉ា ឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា និងភ្ញៀវកិត្តិយសទាំងអស់ សូមប្រកបតែភាពសុខដុមចម្រុងចម្រើន និងសុភមង្គលគ្រប់ក្រុមគ្រួសារជានិរន្តន៍។
+            </p>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 10: FOOTER & RETURN TO COVER           -->
+        <!-- ============================================== -->
+        <footer class="detail-footer">
+            <div class="footer-logo">
+                <img src="../assets/decorations/logo_sak_green_white.png" alt="Wedding Logo" class="footer-logo-img">
+            </div>
+            <div class="footer-names">Sun Vannshee <span class="footer-heart">❤</span> Luy Kanika</div>
+            <div class="footer-date">១០ • ០១ • ២០២៧</div>
+            <div class="footer-return-wrap">
+                <a href="../index.html" class="btn-return">
+                    <i class="fas fa-home"></i> ត្រឡប់ទៅទំព័រមុខ (Cover)
+                </a>
+            </div>
+            <div class="footer-copyright">
+                Wedding E-Invitation • Designed with love for Vannshee &amp; Kanika
+            </div>
+        </footer>
+
+    </div><!-- End .main-wrapper -->
+
+    <!-- Bottom Floral Decoration -->
+    <div class="decor-bottom-footer">
+        <img src="../assets/decorations/bottom_green_flower.webp" alt="Bottom Green Flower">
+    </div>
+
+    <!-- ============================================== -->
+    <!-- LIGHTBOX MODAL FOR GALLERY                    -->
+    <!-- ============================================== -->
+    <div id="gallery-lightbox" class="lightbox-modal" onclick="closeLightbox(event);">
+        <button class="lightbox-close" onclick="closeLightbox();" aria-label="Close image">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="prevLightbox(event);" aria-label="Previous image">&#10094;</button>
+        <button class="lightbox-nav lightbox-next" onclick="nextLightbox(event);" aria-label="Next image">&#10095;</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Enlarged Wedding Photo">
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- BANNER ZOOM MODAL                              -->
+    <!-- ============================================== -->
+    <div id="banner-modal" class="banner-modal" onclick="handleBannerModalBackdrop(event);">
+        <div class="banner-modal-toolbar">
+            <button type="button" class="banner-tool-btn" id="btn-zoom-in" onclick="zoomBanner(0.35);" title="ពង្រីក (Zoom In)" aria-label="Zoom in">
+                <i class="fas fa-search-plus"></i>
+            </button>
+            <button type="button" class="banner-tool-btn" id="btn-zoom-out" onclick="zoomBanner(-0.35);" title="បង្រួម (Zoom Out)" aria-label="Zoom out">
+                <i class="fas fa-search-minus"></i>
+            </button>
+            <button type="button" class="banner-tool-btn" id="btn-zoom-reset" onclick="resetBannerZoom();" title="កំណត់ដើម (Reset)" aria-label="Reset zoom">
+                <i class="fas fa-undo"></i>
+            </button>
+            <button type="button" class="banner-tool-btn banner-tool-close" onclick="closeBannerModal();" title="បិទ (Close)" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="banner-modal-viewport" id="banner-viewport">
+            <img id="banner-zoom-img" src="../assets/decorations/banner.jpg" alt="លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍" class="banner-zoom-img">
+        </div>
+        <div class="banner-modal-hint">
+            <i class="fas fa-arrows-alt"></i> អូសដើម្បីរំកិល • ចុចពីរដងដើម្បីពង្រីក/បង្រួម
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

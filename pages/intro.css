@@ -1,0 +1,717 @@
+/* ==========================================================================
+   WEDDING E-INVITATION - INTERMEDIATE INTRO PAGE STYLES
+   With Top & Bottom Flowers matching detail_page.html & Intro Card inside
+   ========================================================================== */
+
+:root {
+    --primary-color: #234731;
+    --text-dark: #1b3323;
+    --text-muted: #597060;
+
+    /* Vibrant Emerald & Forest Green */
+    --green-primary: #156d3e;
+    --green-light: #259b58;
+    --green-dark: #0f4d2c;
+    --green-gradient: linear-gradient(135deg, #156d3e 0%, #259b58 50%, #0d4426 100%);
+    --green-gradient-soft: linear-gradient(135deg, rgba(21, 109, 62, 0.08) 0%, rgba(37, 155, 88, 0.14) 100%);
+
+    /* Royal Polished Gold */
+    --gold-primary: #d4af37;
+    --gold-light: #f5e6b9;
+    --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f7e096 50%, #b8860b 100%);
+
+    /* Warm Royal Cream & Ivory */
+    --bg-cream: #faf7f2;
+    --bg-cream-soft: #f3ede2;
+    --card-bg: rgba(255, 255, 255, 0.94);
+    --card-border: rgba(21, 109, 62, 0.22);
+    --shadow-soft: 0 10px 35px rgba(21, 109, 62, 0.08);
+
+    /* Scrims for text legibility over photo */
+    --bg-dark-overlay: linear-gradient(
+        to top,
+        rgba(7, 24, 14, 0.96) 0%,
+        rgba(9, 32, 19, 0.85) 30%,
+        rgba(12, 42, 25, 0.42) 65%,
+        transparent 100%
+    );
+    --top-vignette: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.15) 35%,
+        transparent 100%
+    );
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    background-color: var(--bg-cream);
+    background-image: 
+        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.9) 0%, transparent 60%),
+        radial-gradient(circle at 10% 80%, rgba(244, 237, 225, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 90% 90%, rgba(235, 222, 203, 0.6) 0%, transparent 50%);
+    color: var(--primary-color);
+    font-family: 'Kantumruy Pro', 'Khmer OS', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-synthesis: none;
+    -webkit-font-synthesis: none;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Page Exit / Fade Transition */
+body {
+    opacity: 1;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+body.page-exit {
+    opacity: 0;
+    transform: scale(1.02);
+}
+
+/* ==========================================================================
+   CANVAS PETALS OVERLAY (Full Viewport)
+   ========================================================================== */
+#petals-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    pointer-events: none;
+    z-index: 30;
+}
+
+/* ==========================================================================
+   FLOATING BUTTONS (BACK & MUSIC - MATCHING DETAIL PAGE)
+   ========================================================================== */
+.floating-back-btn {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(21, 109, 62, 0.3);
+    box-shadow: 0 4px 14px rgba(21, 109, 62, 0.18);
+    color: var(--green-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 50;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.floating-back-btn:hover {
+    transform: scale(1.08);
+    background: #ffffff;
+    box-shadow: 0 6px 18px rgba(21, 109, 62, 0.25);
+    color: var(--green-light);
+}
+
+.music-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green-gradient);
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 14px rgba(21, 109, 62, 0.35);
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.music-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(21, 109, 62, 0.45);
+}
+
+.music-toggle.playing i {
+    animation: spinSlow 6s linear infinite;
+}
+
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.music-wave {
+    display: none;
+    position: absolute;
+    bottom: 5px;
+    gap: 2px;
+}
+
+.music-toggle.playing .music-wave {
+    display: flex;
+}
+
+.music-wave span {
+    width: 2px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 2px;
+    animation: waveBounce 0.8s ease-in-out infinite alternate;
+}
+
+.music-wave span:nth-child(2) { animation-delay: 0.2s; height: 11px; }
+.music-wave span:nth-child(3) { animation-delay: 0.4s; height: 6px; }
+
+@keyframes waveBounce {
+    0% { transform: scaleY(0.4); }
+    100% { transform: scaleY(1.2); }
+}
+
+/* ==========================================================================
+   MAIN INTRO WRAPPER & INTRO CARD INSIDE
+   ========================================================================== */
+.intro-wrapper {
+    position: relative;
+    z-index: 20;
+    max-width: 600px;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.intro-card {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #0c2617;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.35), 0 0 20px rgba(21, 109, 62, 0.25);
+    border-left: 1.5px solid rgba(21, 109, 62, 0.3);
+    border-right: 1.5px solid rgba(21, 109, 62, 0.3);
+    border-top: none;
+    border-bottom: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: zoomInCard 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes zoomInCard {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ==========================================================================
+   PHOTO COVER CONTAINER & NATURAL CENTER FIT
+   ========================================================================== */
+.photo-cover-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.cover-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    animation: subtleZoom 6s ease-out forwards;
+    will-change: transform;
+}
+
+@keyframes subtleZoom {
+    0% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(1.03);
+    }
+}
+
+/* Vignette and Gradient Overlay for Legibility */
+.overlay-vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--top-vignette);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.overlay-bottom-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 52%;
+    max-height: 400px;
+    background: var(--bg-dark-overlay);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   CARD TOP EMBLEM LOGO
+   ========================================================================== */
+.card-top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 15;
+    animation: panelFadeInDown 0.8s ease-out both;
+    pointer-events: none;
+}
+
+.card-logo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   CEREMONY & DATE TEXT CONTAINER (CLOSE TO BOTTOM OF PHOTO)
+   ========================================================================== */
+.bottom-content-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    animation: panelFadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.card-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(14, 43, 26, 0.72);
+    border: 1px solid rgba(245, 230, 185, 0.35);
+    border-radius: 20px;
+    padding: 18px 16px 15px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Ceremony Badge */
+.ceremony-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.badge-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245, 230, 185, 0.7), transparent);
+    max-width: 60px;
+}
+
+.badge-text {
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 13px;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    color: #f7e096;
+    font-weight: 400;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Ceremony Primary Title */
+.ceremony-title {
+    font-family: 'Moul', 'Kdam Thmor Pro', serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(37, 155, 88, 0.4);
+}
+
+/* Couple Names */
+.couple-wrapper {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.khmer-names {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.heart-sym {
+    color: #ff6b81;
+    font-size: 15px;
+    animation: pulseHeart 1.6s ease-in-out infinite;
+    display: inline-block;
+    filter: drop-shadow(0 0 6px rgba(255, 107, 129, 0.7));
+}
+
+@keyframes pulseHeart {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+
+.english-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 21px;
+    color: #f7e096;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Elegant Divider */
+.gold-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 80%;
+    margin: 3px 0 10px;
+}
+
+.gold-divider .d-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(247, 224, 150, 0.6), transparent);
+}
+
+.gold-divider .d-icon {
+    font-size: 11px;
+    color: #f7e096;
+    filter: drop-shadow(0 0 4px rgba(247, 224, 150, 0.7));
+}
+
+/* Date & Location Snapshot */
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    margin-bottom: 14px;
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.detail-row i {
+    color: #f7e096;
+    font-size: 13.5px;
+    min-width: 16px;
+}
+
+.sub-row {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.92);
+    flex-wrap: wrap;
+    gap: 5px 8px;
+}
+
+.sub-row .dot {
+    color: #f7e096;
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   5-SECOND COUNTDOWN PROGRESS BAR & ACTION BUTTON
+   ========================================================================== */
+.countdown-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.progress-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #259b58, #f7e096, #259b58);
+    background-size: 200% 100%;
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(247, 224, 150, 0.8);
+    animation: progressFill 10s linear forwards, shimmer 1.5s linear infinite;
+}
+
+@keyframes progressFill {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+@keyframes shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+.actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.timer-indicator {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+}
+
+.timer-spinner {
+    font-size: 11px;
+    color: #f7e096;
+}
+
+.timer-count-num {
+    color: #f7e096;
+    font-weight: 700;
+    font-size: 13.5px;
+}
+
+/* Skip / Enter Directly Button */
+.skip-btn {
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(247, 224, 150, 0.5);
+    color: #ffffff;
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.skip-btn:hover, .skip-btn:active {
+    background: var(--gold-gradient);
+    color: #0d2a1a;
+    border-color: #f7e096;
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.45);
+    transform: translateX(2px);
+}
+
+.skip-btn i {
+    font-size: 10px;
+    transition: transform 0.2s ease;
+}
+
+.skip-btn:hover i {
+    transform: translateX(3px);
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+@keyframes panelFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes panelFadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Full match with index.html & detail_page.html)
+   ========================================================================== */
+@media (max-width: 600px) {
+    .intro-wrapper {
+        padding: 0;
+        max-width: 100%;
+    }
+
+    .intro-card {
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
+        min-height: 100dvh;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+    }
+
+    .card-inner {
+        padding: 16px 14px 14px;
+        border-radius: 18px;
+    }
+
+    .ceremony-title {
+        font-size: 18px;
+    }
+
+    .khmer-names {
+        font-size: 16.5px;
+    }
+
+    .english-names {
+        font-size: 19px;
+    }
+
+    .detail-row {
+        font-size: 12.5px;
+    }
+
+    .sub-row {
+        font-size: 11.5px;
+    }
+
+    .bottom-content-panel {
+        padding: 0 12px calc(14px + env(safe-area-inset-bottom, 0px));
+    }
+}
+
+@media (max-height: 640px) {
+    .english-names {
+        display: none;
+    }
+
+    .intro-wrapper {
+        padding: 0;
+    }
+
+    .intro-card {
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
+        min-height: 100dvh;
+        border-radius: 0;
+    }
+
+    .card-inner {
+        padding: 12px 12px 10px;
+    }
+
+    .ceremony-title {
+        font-size: 17px;
+        margin-bottom: 2px;
+    }
+
+    .gold-divider {
+        margin: 2px 0 6px;
+    }
+
+    .event-details {
+        margin-bottom: 8px;
+        gap: 3px;
+    }
+}

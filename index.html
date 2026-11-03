@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ពិធីមង្គលការ វណ្ណស៊ី &amp; កាន្និកា | Wedding Invitation</title>
+    
+    <!-- Open Graph / Social Sharing Meta Tags -->
+    <meta property="og:title" content="✨ពិធីមង្គលការ ស៊ុន វណ្ណស៊ី &amp; លុយ កាន្និកា✨" />
+    <meta property="og:description" content="សូមគោរពអញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ក្នុងពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍ នៅថ្ងៃអាទិត្យ ទី១០ ខែមករា ឆ្នាំ ២០២៧" />
+    <meta property="og:image" content="assets/decorations/banner.jpg" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="assets/decorations/logo_sak_green_white.webp">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dangrek&family=Great+Vibes&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Kdam+Thmor+Pro&family=Moul&family=Preahvihear&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Floating Falling Flower Petals Canvas -->
+    <canvas id="petals-canvas"></canvas>
+
+    <!-- Background Music -->
+    <!-- <audio id="background-music" loop preload="auto">
+        <source src="assets/music/young_and_beautiful.mp3" type="audio/mpeg">
+    </audio> -->
+
+    <!-- Floating Audio Toggle Button -->
+    <!-- <button id="music-toggle" class="music-toggle" aria-label="Toggle background music">
+        <i class="fas fa-music"></i>
+        <span class="music-wave">
+        </span>
+    </button> -->
+
+    <!-- Cover Floral Decorations -->
+    <div class="decor-top">
+        <img src="assets/decorations/header_green_flower.webp" alt="Header Green Flower">
+    </div>
+    <div class="decor-bottom">
+        <img src="assets/decorations/bottom_green_flower.webp" alt="Bottom Green Flower">
+    </div>
+
+    <!-- Main Cover Content Card -->
+    <main class="cover-container">
+        <!-- Golden Wedding Monogram / Logo -->
+        <div class="logo-wrapper">
+            <img src="assets/decorations/logo_sak_green_white.png" alt="Vannshee & Kanika Logo" class="gold-logo">
+        </div>
+
+        <!-- Ceremony Header -->
+        <div class="ceremony-badge">
+            <span class="badge-line"></span>
+            <span class="badge-text">អាពាហ៍ពិពាហ៍</span>
+            <span class="badge-line"></span>
+        </div>
+        <h1 class="primary-title">សិរីមង្គលអាពាហ៍ពិពាហ៍</h1>
+
+        <!-- Couple Names -->
+        <div class="couple-names-wrap">
+            <div class="khmer-couple">
+                <span class="name groom-name">ស៊ុន វណ្ណស៊ី</span>
+                <span class="heart-symbol">&amp;</span>
+                <span class="name bride-name">លុយ កាន្និកា</span>
+            </div>
+            <div class="english-couple">
+                <span>Sun Vannshee</span>
+                <span class="ampersand">&amp;</span>
+                <span>Luy Kanika</span>
+            </div>
+        </div>
+
+        <!-- Guest Card / Envelope Invitation Box -->
+        <div class="guest-card">
+            <div class="guest-card-border"></div>
+            <div class="guest-label">សូមគោរពអញ្ជើញ</div>
+            <div id="guest-name" class="guest-name">ភ្ញៀវកិត្តិយស</div>
+            <p class="guest-subtext">ចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយសដើម្បីប្រសិទ្ធពរជ័យ</p>
+        </div>
+
+        <!-- Date & Location Snapshot -->
+        <div class="event-brief">
+            <div class="brief-item">
+                <i class="far fa-calendar-alt"></i>
+                <span>ថ្ងៃអាទិត្យ ទី១០ ខែមករា ឆ្នាំ ២០២៧</span>
+            </div>
+            <div class="brief-item">
+                <i class="far fa-clock"></i>
+                <span>វេលាម៉ោង ០៥:០០ ល្ងាច</span>
+            </div>
+            <div class="brief-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>សណ្ឋាគារភ្នំប្រុស ( អគារ B )</span>
+            </div>
+        </div>
+
+        <!-- Live Countdown Timer -->
+        <div class="countdown-wrapper">
+            <div class="countdown-title">ពេលវេលានៅសល់</div>
+            <div id="countdown" class="countdown-grid">
+                <div class="time-box">
+                    <span id="days" class="time-val">00</span>
+                    <span class="time-label">ថ្ងៃ</span>
+                </div>
+                <span class="time-sep">:</span>
+                <div class="time-box">
+                    <span id="hours" class="time-val">00</span>
+                    <span class="time-label">ម៉ោង</span>
+                </div>
+                <span class="time-sep">:</span>
+                <div class="time-box">
+                    <span id="minutes" class="time-val">00</span>
+                    <span class="time-label">នាទី</span>
+                </div>
+                <span class="time-sep">:</span>
+                <div class="time-box">
+                    <span id="seconds" class="time-val">00</span>
+                    <span class="time-label">វិនាទី</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Open Invitation CTA Button -->
+        <div class="cta-wrapper">
+            <a href="pages/intro.html" id="open-btn" class="open-btn" onclick="handleOpenInvitation(event);">
+                <span class="btn-glow"></span>
+                <span class="btn-icon"><i class="fas fa-envelope-open-text"></i></span>
+                <span class="btn-text">ចុចបើកលិខិតអញ្ជើញ</span>
+            </a>
+            <div class="touch-hint">ប៉ះលើប៊ូតុងដើម្បីបើកធៀប និងចាក់ភ្លេង</div>
+        </div>
+    </main>
+
+    <!-- Fireworks / Sparkle Container -->
+    <div id="fireworks-container"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

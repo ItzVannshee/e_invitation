@@ -1,0 +1,11 @@
+{
+  "name": "e-invitation-vannshee-kanika",
+  "version": "1.0.0",
+  "description": "Wedding E-Invitation for Sun Vannshee & Luy Kanika",
+  "scripts": {
+    "start": "serve ."
+  },
+  "keywords": ["wedding", "e-invitation", "khmer-wedding", "vercel"],
+  "author": "Sun Vannshee & Luy Kanika",
+  "license": "MIT"
+}

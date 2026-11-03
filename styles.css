@@ -1,0 +1,606 @@
+/* ==========================================================================
+   WEDDING E-INVITATION - VANNSHEE & KANIKA
+   Cream/Gold Floral Theme
+   Pure HTML5 & Modern CSS3
+   ========================================================================== */
+
+:root {
+    --primary-color: #234731;
+    --text-dark: #1b3323;
+    --text-muted: #597060;
+    
+    /* Vibrant Emerald & Forest Green */
+    --green-primary: #156d3e;
+    --green-light: #208b50;
+    --green-dark: #0f4d2c;
+    --green-gradient: linear-gradient(135deg, #156d3e 0%, #259b58 50%, #0d4426 100%);
+    --green-gradient-soft: linear-gradient(135deg, rgba(21, 109, 62, 0.08) 0%, rgba(37, 155, 88, 0.14) 100%);
+
+    /* Royal Polished Gold (mapped to green) */
+    --gold-primary: #156d3e;
+    --gold-light: #208b50;
+    --gold-dark: #0f4d2c;
+    --gold-gradient: linear-gradient(135deg, #156d3e 0%, #259b58 50%, #0d4426 100%);
+    --gold-gradient-soft: linear-gradient(135deg, rgba(21, 109, 62, 0.08) 0%, rgba(37, 155, 88, 0.14) 100%);
+
+    /* Warm Royal Cream & Ivory */
+    --bg-cream: #faf7f2;
+    --bg-cream-soft: #f3ede2;
+    --card-bg: rgba(255, 255, 255, 0.94);
+    --card-border: rgba(21, 109, 62, 0.22);
+    --shadow-soft: 0 10px 35px rgba(21, 109, 62, 0.08);
+    --shadow-gold: 0 8px 24px rgba(197, 155, 67, 0.25);
+    --shadow-green: 0 8px 24px rgba(21, 109, 62, 0.32);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+    background-color: var(--bg-cream);
+    background-image: 
+        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.9) 0%, transparent 60%),
+        radial-gradient(circle at 10% 80%, rgba(244, 237, 225, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 90% 90%, rgba(235, 222, 203, 0.6) 0%, transparent 50%);
+    color: var(--primary-color);
+    font-family: 'Kantumruy Pro', 'Khmer OS', sans-serif;
+    font-synthesis: none;
+    -webkit-font-synthesis: none;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==========================================================================
+   CANVAS PETALS OVERLAY
+   ========================================================================== */
+#petals-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 15;
+}
+
+/* ==========================================================================
+   CORNER FLORAL DECORATIONS
+   ========================================================================== */
+.decor-top {
+    position: fixed;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 580px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.92;
+    animation: fadeInDown 1.4s ease-out forwards;
+}
+
+.decor-top img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 12px rgba(100, 80, 50, 0.08));
+}
+
+.decor-bottom {
+    position: fixed;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 580px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.92;
+    animation: fadeInUp 1.4s ease-out forwards;
+}
+
+.decor-bottom img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 -4px 12px rgba(100, 80, 50, 0.08));
+}
+
+/* ==========================================================================
+   FLOATING MUSIC BUTTON
+   ========================================================================== */
+.music-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green-gradient);
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 14px rgba(21, 109, 62, 0.35);
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.music-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(21, 109, 62, 0.45);
+}
+
+.music-toggle.playing i {
+    animation: spinSlow 6s linear infinite;
+}
+
+.music-wave {
+    display: none;
+    position: absolute;
+    bottom: 5px;
+    gap: 2px;
+}
+
+.music-toggle.playing .music-wave {
+    display: flex;
+}
+
+.music-wave span {
+    width: 2px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 2px;
+    animation: waveBounce 0.8s ease-in-out infinite alternate;
+}
+
+.music-wave span:nth-child(2) { animation-delay: 0.2s; height: 12px; }
+.music-wave span:nth-child(3) { animation-delay: 0.4s; height: 6px; }
+
+/* ==========================================================================
+   MAIN COVER CONTAINER
+   ========================================================================== */
+.cover-container {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 75px 22px 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: fadeIn 1.2s ease-out forwards;
+}
+
+/* Gold Monogram Logo */
+.logo-wrapper {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.gold-logo {
+    width: 110px;
+    height: auto;
+    max-height: 120px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 14px rgba(21, 109, 62, 0.22));
+    animation: gentlePulse 3s ease-in-out infinite;
+}
+
+/* Ceremony Header */
+.ceremony-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+.badge-line {
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green-light), transparent);
+}
+
+.badge-text {
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 13px;
+    letter-spacing: normal;
+    color: var(--green-primary);
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.primary-title {
+    font-family: 'Moul', 'Kdam Thmor Pro', serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.8;
+    margin-bottom: 14px;
+    background: var(--green-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(21, 109, 62, 0.18));
+}
+
+/* Couple Names */
+.couple-names-wrap {
+    margin-bottom: 24px;
+}
+
+.khmer-couple {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--green-dark);
+}
+
+.heart-symbol {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--green-primary);
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.english-couple {
+    margin-top: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--green-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.english-couple .ampersand {
+    font-family: 'Great Vibes', cursive;
+    font-size: 22px;
+    text-transform: none;
+    color: var(--green-dark);
+}
+
+/* ==========================================================================
+   GUEST CARD / ENVELOPE BOX
+   ========================================================================== */
+.guest-card {
+    position: relative;
+    width: 100%;
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 18px;
+    padding: 22px 18px;
+    margin-bottom: 22px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--card-border);
+    transition: transform 0.3s ease;
+}
+
+.guest-card-border {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px dashed rgba(21, 109, 62, 0.32);
+    border-radius: 14px;
+    pointer-events: none;
+}
+
+.guest-label {
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 15px;
+    color: var(--green-primary);
+    letter-spacing: normal;
+    font-weight: 400;
+    margin-bottom: 6px;
+}
+
+.guest-name {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    padding: 2px 10px;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.6;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.guest-subtext {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   EVENT BRIEF INFO
+   ========================================================================== */
+.event-brief {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 24px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 14px;
+    padding: 14px 16px;
+    border: 1px solid rgba(21, 109, 62, 0.18);
+}
+
+.brief-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text-dark);
+}
+
+.brief-item i {
+    color: var(--green-primary);
+    font-size: 14px;
+    width: 16px;
+}
+
+/* ==========================================================================
+   COUNTDOWN TIMER
+   ========================================================================== */
+.countdown-wrapper {
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+.countdown-title {
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 13px;
+    color: var(--green-primary);
+    margin-bottom: 10px;
+    letter-spacing: normal;
+    font-weight: 400;
+}
+
+.countdown-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.time-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 8px 10px;
+    min-width: 58px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(21, 109, 62, 0.06);
+}
+
+.time-val {
+    font-family: 'Cormorant Garamond', 'Montserrat', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1;
+}
+
+.time-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 3px;
+}
+
+.time-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-primary);
+    margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   CTA BUTTON (OPEN INVITATION)
+   ========================================================================== */
+.cta-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.open-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: var(--green-gradient);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 15px 36px;
+    border-radius: 50px;
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: normal;
+    box-shadow: 0 8px 24px rgba(21, 109, 62, 0.35);
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+}
+
+.open-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(21, 109, 62, 0.45);
+}
+
+.open-btn:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.btn-glow {
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        60deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.45) 50%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    transform: rotate(30deg);
+    animation: shimmerSheen 3.5s infinite;
+    pointer-events: none;
+}
+
+.btn-icon {
+    font-size: 18px;
+}
+
+.touch-hint {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    opacity: 0.85;
+}
+
+/* ==========================================================================
+   FIREWORKS / SPARKLE CONTAINER
+   ========================================================================== */
+#fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.firework-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: explodeParticle 1s ease-out forwards;
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 0.92; transform: translate(-50%, 0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to { opacity: 0.92; transform: translate(-50%, 0); }
+}
+
+@keyframes gentlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes waveBounce {
+    from { transform: scaleY(0.4); }
+    to { transform: scaleY(1.2); }
+}
+
+@keyframes shimmerSheen {
+    0% { transform: translateX(-100%) rotate(30deg); }
+    20%, 100% { transform: translateX(100%) rotate(30deg); }
+}
+
+@keyframes explodeParticle {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(0.2);
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 480px) {
+    .cover-container {
+        padding: 60px 16px 80px;
+    }
+
+    .primary-title {
+        font-size: 21px;
+    }
+
+    .khmer-couple {
+        font-size: 18px;
+    }
+
+    .guest-name {
+        font-size: 20px;
+    }
+
+    .gold-logo {
+        width: 95px;
+    }
+
+    .time-box {
+        min-width: 52px;
+        padding: 6px 8px;
+    }
+
+    .time-val {
+        font-size: 20px;
+    }
+
+    .open-btn {
+        padding: 14px 30px;
+        font-size: 16px;
+    }
+}

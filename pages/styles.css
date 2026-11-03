@@ -1,0 +1,1582 @@
+/* ==========================================================================
+   WEDDING E-INVITATION - DETAIL PAGE STYLES
+   Emerald Green & Ivory Floral Theme
+   Pure HTML5 & Modern CSS3
+   ========================================================================== */
+
+:root {
+    --primary-color: #234731;
+    --text-dark: #1b3323;
+    --text-muted: #597060;
+
+    /* Vibrant Emerald & Forest Green */
+    --green-primary: #156d3e;
+    --green-light: #208b50;
+    --green-dark: #0f4d2c;
+    --green-gradient: linear-gradient(135deg, #156d3e 0%, #259b58 50%, #0d4426 100%);
+    --green-gradient-soft: linear-gradient(135deg, rgba(21, 109, 62, 0.08) 0%, rgba(37, 155, 88, 0.14) 100%);
+
+    /* Gold / Accent variables remapped to green for complete elegance */
+    --gold-primary: #156d3e;
+    --gold-light: #208b50;
+    --gold-dark: #0f4d2c;
+    --gold-gradient: linear-gradient(135deg, #156d3e 0%, #259b58 50%, #0d4426 100%);
+    --gold-gradient-soft: linear-gradient(135deg, rgba(21, 109, 62, 0.08) 0%, rgba(37, 155, 88, 0.14) 100%);
+
+    /* Warm Royal Cream & Ivory */
+    --bg-cream: #faf7f2;
+    --bg-cream-soft: #f3ede2;
+    --card-bg: rgba(255, 255, 255, 0.94);
+    --card-border: rgba(21, 109, 62, 0.22);
+    --shadow-soft: 0 10px 30px rgba(21, 109, 62, 0.08);
+    --shadow-card: 0 8px 24px rgba(21, 109, 62, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-cream);
+    background-image: 
+        radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.95) 0%, transparent 60%),
+        radial-gradient(circle at 10% 40%, rgba(244, 237, 225, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(235, 222, 203, 0.7) 0%, transparent 50%);
+    color: var(--primary-color);
+    font-family: 'Kantumruy Pro', 'Khmer OS', sans-serif;
+    font-synthesis: none;
+    -webkit-font-synthesis: none;
+    line-height: 1.7;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   CANVAS PETALS OVERLAY
+   ========================================================================== */
+#petals-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 15;
+}
+
+/* ==========================================================================
+   FLOATING BUTTONS (AUDIO & BACK)
+   ========================================================================== */
+.music-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green-gradient);
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 14px rgba(21, 109, 62, 0.35);
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.music-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(21, 109, 62, 0.45);
+}
+
+.music-toggle.playing i {
+    animation: spinSlow 6s linear infinite;
+}
+
+.music-wave {
+    display: none;
+    position: absolute;
+    bottom: 5px;
+    gap: 2px;
+}
+
+.music-toggle.playing .music-wave {
+    display: flex;
+}
+
+.music-wave span {
+    width: 2px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 2px;
+    animation: waveBounce 0.8s ease-in-out infinite alternate;
+}
+
+.music-wave span:nth-child(2) { animation-delay: 0.2s; height: 12px; }
+.music-wave span:nth-child(3) { animation-delay: 0.4s; height: 6px; }
+
+.floating-back-btn {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 12px rgba(21, 109, 62, 0.1);
+    color: var(--green-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 60;
+    transition: all 0.3s ease;
+}
+
+.floating-back-btn:hover {
+    background: #ffffff;
+    transform: scale(1.08);
+    box-shadow: 0 6px 16px rgba(21, 109, 62, 0.25);
+    color: var(--green-dark);
+}
+
+/* ==========================================================================
+   TOP & BOTTOM FLORAL DECORATIONS (BEHIND CONTENT)
+   ========================================================================== */
+.decor-top-header {
+    position: fixed;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 600px;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 1;
+    text-align: center;
+    animation: fadeInDown 1.2s ease-out forwards;
+}
+
+.decor-top-header img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 16px rgba(21, 109, 62, 0.16));
+}
+
+.decor-bottom-footer {
+    position: fixed;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 600px;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 1;
+    text-align: center;
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.decor-bottom-footer img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 -4px 16px rgba(21, 109, 62, 0.16));
+}
+
+/* ==========================================================================
+   MAIN WRAPPER & BASE CARDS
+   ========================================================================== */
+.main-wrapper {
+    position: relative;
+    z-index: 20;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 70px 18px 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.section-card {
+    position: relative;
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 28px 20px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--card-border);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card-title-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-gradient-soft);
+    color: var(--green-dark);
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    padding: 6px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(21, 109, 62, 0.28);
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(21, 109, 62, 0.12);
+}
+
+.card-title-pill i {
+    color: var(--green-primary);
+}
+
+.card-ornament-top {
+    color: var(--green-primary);
+    font-size: 20px;
+    margin-bottom: 12px;
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   SECTION 1: HEADER
+   ========================================================================== */
+.detail-header {
+    text-align: center;
+    padding: 10px 10px 15px;
+}
+
+.logo-box {
+    margin-bottom: 10px;
+}
+
+.detail-logo {
+    width: 100px;
+    height: auto;
+    max-height: 115px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(21, 109, 62, 0.22));
+    animation: gentlePulse 3.5s ease-in-out infinite;
+}
+
+.header-subtitle {
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 15px;
+    color: var(--green-primary);
+    font-weight: 400;
+    letter-spacing: normal;
+    margin-bottom: 6px;
+}
+
+.header-primary-title {
+    font-family: 'Moul', 'Kdam Thmor Pro', serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.8;
+    margin-bottom: 6px;
+    background: var(--green-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(21, 109, 62, 0.18));
+}
+
+.wedding-english-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    font-weight: 600;
+}
+
+.header-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.header-divider .line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green-light), transparent);
+}
+
+.header-divider .diamond {
+    color: var(--green-primary);
+    font-size: 11px;
+}
+
+/* ==========================================================================
+   SECTION 2: PARENTS (មាតាបិតាទាំងសងខាង)
+   ========================================================================== */
+.parents-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.parents-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 14px;
+    padding: 16px 10px;
+    border: 1px solid rgba(21, 109, 62, 0.2);
+}
+
+.side-tag {
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: var(--green-primary);
+    background: #f0f7f3;
+    padding: 3px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(21, 109, 62, 0.25);
+    margin-bottom: 12px;
+}
+
+.parent-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.parent-entry:last-child {
+    margin-bottom: 0;
+}
+
+.parent-role {
+    font-size: 11.5px;
+    color: var(--text-muted);
+}
+
+.parent-name {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--green-dark);
+}
+
+.parents-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.knot-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f0f7f3;
+    border: 1px solid rgba(21, 109, 62, 0.3);
+    color: var(--green-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    box-shadow: 0 2px 6px rgba(21, 109, 62, 0.15);
+}
+
+/* ==========================================================================
+   SECTION 3: THE COUPLE
+   ========================================================================== */
+.couple-grid {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.couple-profile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.arch-frame {
+    position: relative;
+    width: 120px;
+    height: 155px;
+    border-radius: 60px 60px 16px 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(21, 109, 62, 0.15);
+    margin-bottom: 12px;
+    border: 3px solid #ffffff;
+    transition: transform 0.35s ease;
+}
+
+.arch-frame:hover {
+    transform: translateY(-4px) scale(1.03);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.arch-gold-border {
+    position: absolute;
+    inset: 0;
+    border-radius: 57px 57px 13px 13px;
+    border: 1.5px solid rgba(21, 109, 62, 0.45);
+    pointer-events: none;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-role {
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: var(--green-primary);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.profile-khmer-name {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--green-dark);
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.profile-en-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--green-primary);
+    letter-spacing: 0.5px;
+    display: block;
+}
+
+.couple-center-ornament {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 55px;
+}
+
+.rings-badge {
+    position: relative;
+    color: var(--green-primary);
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.rings-badge .ring-1 {
+    transform: rotate(-15deg);
+}
+
+.rings-badge .ring-2 {
+    margin-left: -8px;
+    color: var(--green-dark);
+    transform: rotate(20deg);
+}
+
+.ampersand-sign {
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    color: var(--green-primary);
+    line-height: 1;
+}
+
+/* ==========================================================================
+   SECTION 4: INVITATION STATEMENT
+   ========================================================================== */
+.formal-invite-title {
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+}
+
+.personalized-guest-block {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #f7faf8 0%, #edf5f0 100%);
+    border: 1px dashed rgba(21, 109, 62, 0.35);
+    border-radius: 14px;
+    padding: 10px 22px;
+    margin-bottom: 16px;
+    max-width: 90%;
+}
+
+.to-label {
+    font-size: 12px;
+    color: var(--green-primary);
+    margin-bottom: 2px;
+}
+
+.guest-target-name {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--green-dark);
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+.formal-text {
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.85;
+    margin-bottom: 20px;
+    padding: 0 8px;
+}
+
+.date-highlight-box {
+    background: linear-gradient(135deg, #fbfdfc 0%, #f2f8f4 100%);
+    border: 1px solid rgba(21, 109, 62, 0.25);
+    border-radius: 16px;
+    padding: 18px 14px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 14px rgba(21, 109, 62, 0.05);
+}
+
+.highlight-date-khmer {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+}
+
+.highlight-lunar-date {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.highlight-time {
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.highlight-time i {
+    color: var(--green-primary);
+    margin-right: 4px;
+}
+
+.highlight-venue {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+}
+
+.highlight-venue i {
+    color: var(--green-primary);
+    margin-right: 4px;
+}
+
+.highlight-venue-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.calendar-action-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.btn-calendar, .btn-calendar-ics {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 50px;
+    font-size: 13.5px;
+    font-family: 'Kantumruy Pro', sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-calendar {
+    background: #ffffff;
+    color: #4285F4;
+    border: 1px solid rgba(66, 133, 244, 0.3);
+    box-shadow: 0 2px 8px rgba(66, 133, 244, 0.1);
+}
+
+.btn-calendar:hover {
+    background: #f7f9ff;
+    border-color: #4285F4;
+    transform: translateY(-2px);
+}
+
+.btn-calendar-ics {
+    background: var(--green-gradient-soft);
+    color: var(--green-dark);
+    border: 1px solid rgba(21, 109, 62, 0.3);
+    box-shadow: 0 2px 8px rgba(21, 109, 62, 0.12);
+}
+
+.btn-calendar-ics i {
+    color: var(--green-primary);
+}
+
+.btn-calendar-ics:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(21, 109, 62, 0.22);
+    color: var(--green-primary);
+}
+
+/* ==========================================================================
+   SECTION 5: TIMELINE (កម្មវិធីមង្គលការ)
+   ========================================================================== */
+.timeline-day-badge {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 14.5px;
+    font-weight: 400;
+    color: var(--green-dark);
+    background: #f0f7f3;
+    border: 1px solid rgba(21, 109, 62, 0.25);
+    padding: 4px 16px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 22px;
+}
+
+.timeline-vertical {
+    position: relative;
+    padding-left: 36px;
+    text-align: left;
+}
+
+.timeline-vertical::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 20px;
+    left: 17px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--green-light) 0%, rgba(21, 109, 62, 0.2) 100%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -36px;
+    top: 4px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid rgba(21, 109, 62, 0.3);
+    color: var(--green-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    box-shadow: 0 2px 8px rgba(21, 109, 62, 0.1);
+    z-index: 2;
+}
+
+.timeline-dot i {
+    color: var(--green-primary);
+}
+
+.timeline-box {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(21, 109, 62, 0.18);
+    border-radius: 12px;
+    padding: 10px 14px;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.timeline-box:hover {
+    background: #ffffff;
+    transform: translateX(4px);
+}
+
+.timeline-time {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green-primary);
+    margin-bottom: 2px;
+}
+
+.timeline-title {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-dark);
+}
+
+.timeline-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* Highlighted Reception Item */
+.timeline-item.highlight-item .highlight-dot {
+    background: var(--green-gradient);
+    color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 0 12px rgba(21, 109, 62, 0.45);
+}
+
+.timeline-item.highlight-item .highlight-dot i {
+    color: #ffffff;
+}
+
+.timeline-item.highlight-item .highlight-box {
+    background: linear-gradient(135deg, #f6fbf8 0%, #edf7f1 100%);
+    border-color: rgba(21, 109, 62, 0.35);
+    box-shadow: 0 4px 14px rgba(21, 109, 62, 0.12);
+}
+
+/* ==========================================================================
+   SECTION 6: DRESS CODE
+   ========================================================================== */
+.dresscode-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: -12px;
+    margin-bottom: 20px;
+}
+
+.dresscode-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dresscode-group {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(21, 109, 62, 0.2);
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.group-label {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 14.5px;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.group-label i {
+    color: var(--green-primary);
+}
+
+.swatches-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.swatch-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.color-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.swatch-item:hover .color-circle {
+    transform: scale(1.15);
+}
+
+.swatch-name {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SECTION 7: LOCATION & MAP
+   ========================================================================== */
+.venue-main-title {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+}
+
+.venue-address {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.map-frame-wrapper {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(21, 109, 62, 0.1);
+    border: 1px solid rgba(21, 109, 62, 0.25);
+    margin-bottom: 16px;
+}
+
+.map-frame-wrapper iframe {
+    display: block;
+}
+
+.location-actions {
+    margin-bottom: 16px;
+}
+
+.btn-navigate {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--green-gradient);
+    color: #ffffff;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(21, 109, 62, 0.35);
+    transition: all 0.3s ease;
+}
+
+.btn-navigate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(21, 109, 62, 0.45);
+}
+
+.btn-navigate i {
+    color: #ffffff;
+}
+
+.contact-contacts-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 13.5px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    padding: 10px 14px;
+    border: 1px solid rgba(21, 109, 62, 0.2);
+}
+
+.contact-label {
+    color: var(--green-dark);
+    font-weight: 600;
+}
+
+.contact-label i {
+    color: var(--green-primary);
+    margin-right: 4px;
+}
+
+.phones-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.phone-link {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.phone-link:hover {
+    color: var(--green-primary);
+    text-decoration: underline;
+}
+
+.phone-sep {
+    color: var(--green-primary);
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   SECTION 8: GALLERY (កម្រងរូបភាព)
+   ========================================================================== */
+.gallery-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: -12px;
+    margin-bottom: 18px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(21, 109, 62, 0.1);
+    background: #edf5ef;
+    border: 1.5px solid rgba(21, 109, 62, 0.22);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(21, 109, 62, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-overlay i {
+    color: #ffffff;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-reserved-banner {
+    margin-top: 16px;
+    padding: 10px 14px;
+    background: #f4faf6;
+    border: 1px dashed rgba(21, 109, 62, 0.3);
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.gallery-reserved-banner i {
+    color: var(--green-primary);
+    font-size: 14px;
+}
+
+.gallery-reserved-banner code {
+    background: rgba(21, 109, 62, 0.12);
+    color: var(--green-dark);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* ==========================================================================
+   SECTION 9: APOLOGY & THANK YOU
+   ========================================================================== */
+.message-title {
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: var(--green-dark);
+    margin-bottom: 12px;
+}
+
+.message-body {
+    font-size: 13.5px;
+    color: var(--text-dark);
+    line-height: 1.85;
+    margin-bottom: 12px;
+}
+
+.message-highlight {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--green-dark);
+    background: #f0f7f3;
+    border-radius: 10px;
+    padding: 10px 12px;
+    line-height: 1.8;
+}
+
+.message-wish {
+    font-size: 13.5px;
+    color: var(--green-dark);
+    font-weight: 500;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   SECTION 10: FOOTER
+   ========================================================================== */
+.detail-footer {
+    text-align: center;
+    padding: 20px 10px 10px;
+}
+
+.footer-logo {
+    margin-bottom: 10px;
+}
+
+.footer-logo-img {
+    width: 65px;
+    height: auto;
+    filter: drop-shadow(0 2px 6px rgba(21, 109, 62, 0.2));
+}
+
+.footer-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+}
+
+.footer-heart {
+    color: var(--green-primary);
+    display: inline-block;
+    margin: 0 4px;
+}
+
+.footer-date {
+    font-family: 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--green-primary);
+    margin-bottom: 18px;
+}
+
+.footer-return-wrap {
+    margin-bottom: 18px;
+}
+
+.btn-return {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: var(--green-dark);
+    border: 1.5px solid rgba(21, 109, 62, 0.3);
+    padding: 9px 22px;
+    border-radius: 50px;
+    font-size: 13.5px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(21, 109, 62, 0.1);
+    transition: all 0.25s ease;
+}
+
+.btn-return i {
+    color: var(--green-primary);
+}
+
+.btn-return:hover {
+    background: #f0f7f3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(21, 109, 62, 0.22);
+    color: var(--green-primary);
+}
+
+.footer-copyright {
+    font-size: 11px;
+    color: var(--text-muted);
+    opacity: 0.75;
+}
+
+/* ==========================================================================
+   OFFICIAL WEDDING INVITATION BANNER
+   ========================================================================== */
+.banner-invitation-card {
+    padding: 26px 18px 22px;
+}
+
+.banner-card-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: -12px;
+    margin-bottom: 18px;
+}
+
+.banner-preview-box {
+    position: relative;
+    cursor: pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 2px solid rgba(21, 109, 62, 0.25);
+    box-shadow: 0 8px 24px rgba(21, 109, 62, 0.15);
+    transition: all 0.35s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.banner-preview-box:hover {
+    transform: translateY(-3px);
+    border-color: rgba(21, 109, 62, 0.5);
+    box-shadow: 0 14px 32px rgba(21, 109, 62, 0.25);
+}
+
+.banner-img-frame {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: block;
+}
+
+.banner-display-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.banner-preview-box:hover .banner-display-img {
+    transform: scale(1.02);
+}
+
+.banner-zoom-trigger {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    pointer-events: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.zoom-badge-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(21, 109, 62, 0.92);
+    color: #ffffff;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: all 0.3s ease;
+    animation: bannerBadgePulse 2.8s infinite;
+}
+
+@keyframes bannerBadgePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+    50% {
+        transform: scale(1.04);
+        box-shadow: 0 6px 24px rgba(21, 109, 62, 0.6);
+    }
+}
+
+.banner-interaction-hint {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    line-height: 1.5;
+}
+
+.banner-interaction-hint i {
+    color: var(--green-primary);
+}
+
+/* ==========================================================================
+   BANNER FULLSCREEN ZOOM MODAL
+   ========================================================================== */
+.banner-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.93);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 2000;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+}
+
+.banner-modal.active {
+    display: flex;
+    animation: fadeIn 0.25s ease-out;
+}
+
+.banner-modal-toolbar {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 2030;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.16);
+    padding: 6px 12px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.banner-tool-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #ffffff;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.banner-tool-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+.banner-tool-btn:active {
+    transform: scale(0.92);
+}
+
+.banner-tool-close {
+    background: rgba(220, 53, 69, 0.85);
+    margin-left: 4px;
+}
+
+.banner-tool-close:hover {
+    background: rgba(220, 53, 69, 1);
+}
+
+.banner-modal-viewport {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: grab;
+}
+
+.banner-modal-viewport.is-dragging {
+    cursor: grabbing;
+}
+
+.banner-zoom-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 45px rgba(0, 0, 0, 0.65);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.15s ease-out;
+    transform-origin: center center;
+    will-change: transform;
+    pointer-events: auto;
+}
+
+.banner-modal-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2030;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 6px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+    font-family: 'Kantumruy Pro', sans-serif;
+    white-space: nowrap;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+/* ==========================================================================
+   LIGHTBOX MODAL
+   ========================================================================== */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.lightbox-modal.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 38px;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 1010;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #ffffff;
+    font-size: 26px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    z-index: 1010;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.lightbox-prev { left: 15px; }
+.lightbox-next { right: 15px; }
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes gentlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes waveBounce {
+    from { transform: scaleY(0.4); }
+    to { transform: scaleY(1.2); }
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 480px) {
+    .main-wrapper {
+        padding: 60px 12px 85px;
+    }
+
+    .section-card {
+        padding: 22px 14px;
+    }
+
+    .header-primary-title {
+        font-size: 21px;
+    }
+
+    .arch-frame {
+        width: 105px;
+        height: 140px;
+    }
+
+    .profile-khmer-name {
+        font-size: 16px;
+    }
+
+    .parent-name {
+        font-size: 14.5px;
+    }
+
+    .parents-grid {
+        gap: 6px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .banner-invitation-card {
+        padding: 20px 12px 18px;
+    }
+
+    .zoom-badge-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .banner-modal-toolbar {
+        top: 12px;
+        right: 12px;
+        gap: 6px;
+        padding: 4px 8px;
+    }
+
+    .banner-tool-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 13.5px;
+    }
+
+    .banner-zoom-img {
+        max-width: 95vw;
+        max-height: 80vh;
+    }
+
+    .banner-modal-hint {
+        bottom: 14px;
+        font-size: 11px;
+        padding: 5px 12px;
+    }
+}
