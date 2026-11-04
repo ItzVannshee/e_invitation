@@ -18,12 +18,28 @@ function initGuestName() {
     const guestParam = urlParams.get('to') || urlParams.get('name') || urlParams.get('guest') || urlParams.get('g');
     const guestTargetEl = document.getElementById('guest-target-name');
     
-    if (guestParam && guestTargetEl) {
+    if (guestParam) {
+        let decodedName = '';
         try {
             const cleaned = guestParam.replace(/\+/g, ' ');
-            guestTargetEl.textContent = cleaned.includes('%') ? decodeURIComponent(cleaned) : cleaned;
+            decodedName = cleaned.includes('%') ? decodeURIComponent(cleaned) : cleaned;
         } catch (e) {
-            guestTargetEl.textContent = guestParam.replace(/\+/g, ' ');
+            decodedName = guestParam.replace(/\+/g, ' ');
+        }
+        decodedName = decodedName.trim();
+
+        if (guestTargetEl && decodedName) {
+            guestTargetEl.textContent = decodedName;
+        }
+
+        if (decodedName) {
+            const dynamicDesc = `សូមគោរពអញ្ជើញ ${decodedName} ចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ក្នុងពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍ នៅថ្ងៃអាទិត្យ ទី១០ ខែមករា ឆ្នាំ ២០២៧`;
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', dynamicDesc);
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            if (ogDesc) ogDesc.setAttribute('content', dynamicDesc);
+            const twDesc = document.querySelector('meta[name="twitter:description"]');
+            if (twDesc) twDesc.setAttribute('content', dynamicDesc);
         }
     }
 

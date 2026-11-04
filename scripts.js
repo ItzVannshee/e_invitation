@@ -49,6 +49,18 @@ function initGuestName() {
 
         const twTitle = document.querySelector('meta[name="twitter:title"]');
         if (twTitle) twTitle.setAttribute('content', dynamicTitle);
+
+        // Dynamically update description meta tags
+        const dynamicDesc = `សូមគោរពអញ្ជើញ ${decodedName} ចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ក្នុងពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍ នៅថ្ងៃអាទិត្យ ទី១០ ខែមករា ឆ្នាំ ២០២៧`;
+        
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute('content', dynamicDesc);
+
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute('content', dynamicDesc);
+
+        const twDesc = document.querySelector('meta[name="twitter:description"]');
+        if (twDesc) twDesc.setAttribute('content', dynamicDesc);
     }
 
     // Forward guest parameter to the next page link
