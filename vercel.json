@@ -2,6 +2,58 @@
   "version": 2,
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/g/:name", "destination": "/api/index.js?to=:name" },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "to"
+        }
+      ],
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "name"
+        }
+      ],
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "guest"
+        }
+      ],
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "g"
+        }
+      ],
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(telegram|twitter|facebookexternalhit|whatsapp|linkedin|discord).*"
+        }
+      ],
+      "destination": "/api/index.js"
+    },
     { "source": "/intro", "destination": "/pages/intro.html" },
     { "source": "/welcome", "destination": "/pages/intro.html" },
     { "source": "/detail", "destination": "/pages/detail_page.html" },

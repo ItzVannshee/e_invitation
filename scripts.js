@@ -14,23 +14,51 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================================================
 function initGuestName() {
     const urlParams = new URLSearchParams(window.location.search);
-    const guestParam = urlParams.get('to') || urlParams.get('name') || urlParams.get('guest') || urlParams.get('g');
+    let guestParam = urlParams.get('to') || urlParams.get('name') || urlParams.get('guest') || urlParams.get('g');
+
+    // Also support /g/GuestName pathname
+    if (!guestParam && window.location.pathname.includes('/g/')) {
+        const parts = window.location.pathname.split('/g/');
+        if (parts[1]) {
+            guestParam = parts[1].split('/')[0].split('?')[0];
+        }
+    }
+
     const guestEl = document.getElementById('guest-name');
+    let decodedName = '';
     
-    if (guestParam && guestEl) {
+    if (guestParam) {
         try {
             const cleaned = guestParam.replace(/\+/g, ' ');
-            guestEl.textContent = cleaned.includes('%') ? decodeURIComponent(cleaned) : cleaned;
+            decodedName = cleaned.includes('%') ? decodeURIComponent(cleaned) : cleaned;
         } catch (e) {
-            guestEl.textContent = guestParam.replace(/\+/g, ' ');
+            decodedName = guestParam.replace(/\+/g, ' ');
         }
+        decodedName = decodedName.trim();
+
+        if (guestEl && decodedName) {
+            guestEl.textContent = decodedName;
+        }
+
+        // Dynamically update document & meta titles
+        const dynamicTitle = `✨ ពិធីមង្គលការ ស៊ុន វណ្ណស៊ី និង លុយ កាន្និកា ✨ - Welcome ${decodedName}`;
+        document.title = dynamicTitle;
+
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', dynamicTitle);
+
+        const twTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twTitle) twTitle.setAttribute('content', dynamicTitle);
     }
 
     // Forward guest parameter to the next page link
     const openBtn = document.getElementById('open-btn');
-    if (openBtn && window.location.search) {
+    if (openBtn) {
         const rawHref = openBtn.getAttribute('href').split('?')[0];
-        openBtn.setAttribute('href', rawHref + window.location.search);
+        const search = window.location.search || (decodedName ? `?to=${encodeURIComponent(decodedName)}` : '');
+        if (search) {
+            openBtn.setAttribute('href', rawHref + search);
+        }
     }
 }
 
