@@ -506,9 +506,9 @@ function applyBannerTransform() {
 }
 
 // ==========================================================================
-// 6. SAVE QR CODE IMAGE
+// 6. SAVE QR CODE IMAGE (Supports Native Save to Photos via Web Share API)
 // ==========================================================================
-function saveQrImage(event) {
+async function saveQrImage(event) {
     const qrUrl = '../assets/decorations/aba_qr.jpg';
     const fileName = 'ABA_QR_Vannshee_Kanika.jpg';
     const btn = document.getElementById('btn-save-qr');
@@ -524,20 +524,9 @@ function saveQrImage(event) {
         }, 2200);
     };
 
-    // If running on local file:// protocol, let default anchor download trigger
-    if (window.location.protocol === 'file:') {
-        showSavedFeedback();
-        return true;
-    }
-
-    if (event) event.preventDefault();
-
-    fetch(qrUrl)
-        .then(res => {
-            if (!res.ok) throw new Error('Fetch failed');
-            return res.blob();
-        })
-        .then(blob => {
+    // Helper for direct file download fallback
+    const fallbackDownload = (blob) => {
+        if (blob) {
             const blobUrl = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.style.display = 'none';
@@ -549,10 +538,7 @@ function saveQrImage(event) {
                 document.body.removeChild(a);
                 window.URL.revokeObjectURL(blobUrl);
             }, 500);
-            showSavedFeedback();
-        })
-        .catch(() => {
-            // Fallback for browsers with strict local restrictions
+        } else {
             const a = document.createElement('a');
             a.href = qrUrl;
             a.download = fileName;
@@ -560,6 +546,49 @@ function saveQrImage(event) {
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            showSavedFeedback();
-        });
+        }
+        showSavedFeedback();
+    };
+
+    // If running on local file:// protocol, let default anchor download trigger
+    if (window.location.protocol === 'file:') {
+        showSavedFeedback();
+        return true;
+    }
+
+    if (event) event.preventDefault();
+
+    try {
+        const res = await fetch(qrUrl);
+        if (!res.ok) throw new Error('Fetch failed');
+        const blob = await res.blob();
+
+        // 1. Web Share API with file support:
+        // Opens the native iOS/Android share sheet with direct "Save Image" option into Photos/Camera Roll
+        if (navigator.share && navigator.canShare) {
+            try {
+                const file = new File([blob], fileName, { type: 'image/jpeg' });
+                if (navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        files: [file],
+                        title: 'ABA QR Code',
+                        text: 'Wedding Gift QR Code - Vannshee & Kanika'
+                    });
+                    showSavedFeedback();
+                    return;
+                }
+            } catch (shareErr) {
+                // If user simply closed/cancelled the share sheet, do not force a download
+                if (shareErr.name === 'AbortError') {
+                    return;
+                }
+                console.warn('Share API interrupted, falling back to download:', shareErr);
+            }
+        }
+
+        // 2. Standard Download Fallback (for Desktop or browsers without Share API)
+        fallbackDownload(blob);
+    } catch (err) {
+        fallbackDownload();
+    }
 }
