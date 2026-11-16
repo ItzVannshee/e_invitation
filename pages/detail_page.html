@@ -8,7 +8,7 @@
 
     <!-- Open Graph / Social Sharing Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="e-invitation">
+    <meta property="og:site_name" content="vannsheekanika">
     <meta property="og:title" content="✨ ពិធីមង្គលការ ស៊ុន វណ្ណស៊ី និង លុយ កាន្និកា ✨">
     <meta property="og:description" content="សូមគោរពអញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ក្នុងពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍ នៅថ្ងៃអាទិត្យ ទី១០ ខែមករា ឆ្នាំ ២០២៧">
     <meta property="og:image" content="../assets/decorations/banner.jpg">
@@ -44,7 +44,7 @@
 
     <!-- Background Music -->
     <audio id="background-music" loop preload="auto">
-        <source src="../assets/music/young_and_beautiful.mp3" type="audio/mpeg">
+        <source src="../assets/music/អប្សរលើដី_by_thol_sophiti.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Floating Audio Toggle Button -->
@@ -53,11 +53,6 @@
         <span class="music-wave">
         </span>
     </button>
-
-    <!-- Floating Back to Cover Button -->
-    <a href="../index.html" class="floating-back-btn" title="ត្រឡប់ទៅទំព័រមុខ">
-        <i class="fas fa-arrow-left"></i>
-    </a>
 
     <!-- Top Floral Header Decoration -->
     <div class="decor-top-header">
@@ -441,16 +436,42 @@
         </section>
 
         <!-- ============================================== -->
-        <!-- SECTION 9: THANK YOU & APOLOGY MESSAGES        -->
+        <!-- SECTION 9: WEDDING GIFT QR (ចំណងដៃអាពាហ៍ពិពាហ៍)   -->
+        <!-- ============================================== -->
+        <section class="section-card gift-card">
+            <div class="card-title-pill">
+                <i class="fas fa-gift"></i> ចំណងដៃអាពាហ៍ពិពាហ៍
+            </div>
+            <p class="gift-subtitle">Wedding Gift &amp; Blessings</p>
+            <p class="gift-description">
+                សម្រាប់ភ្ញៀវកិត្តិយសដែលមានបំណងចងដៃ ឬជូនពរជាចំណងដៃតាមរយៈ ABA Bank
+            </p>
+
+            <div class="qr-container">
+                <div class="qr-frame">
+                    <img src="../assets/decorations/aba_qr.jpg" alt="ABA QR Code - Vannshee Sun" class="qr-image" id="aba-qr-image">
+                </div>
+            </div>
+
+            <div class="qr-action-wrap">
+                <a href="../assets/decorations/aba_qr.jpg" download="ABA_QR_Vannshee_Kanika.jpg" class="btn-save-qr" id="btn-save-qr" onclick="saveQrImage(event);">
+                    <i class="fas fa-download"></i> រក្សាទុក
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 10: THANK YOU & APOLOGY MESSAGES       -->
         <!-- ============================================== -->
         <section class="section-card thankyou-card">
             <div class="card-ornament-top"><i class="fa-solid fa-face-kiss-wink-heart"></i></div>
             <h3 class="message-title">សេចក្តីថ្លែងអំណរគុណ</h3>
             <p class="message-body">
-                ខ្ញុំបាទ នាងខ្ញុំជាមាតាបិតា កូនប្រុស កូនស្រី សូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅ ចំពោះវត្តមានដ៏ឧត្តុង្គឧត្តម ក្នុងពិធីសិរីមង្គល អាពាហ៍ពិពាហ៍កូនប្រុស កូនស្រី របស់យើងខ្ញុំ។
+                យើងខ្ញុំជាមាតាបិតា កូនប្រុស កូនស្រី 
+                សូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅ ចំពោះវត្តមានដ៏ឧត្តុង្គឧត្តម ក្នុងពិធីសិរីមង្គល អាពាហ៍ពិពាហ៍កូនប្រុស កូនស្រី របស់យើងខ្ញុំ។
             </p>
             <p class="message-wish">
-                សូមគោរពជូនពរ សម្តេច ទ្រង់ ឯកឧត្តម លោកអ្នកឧកញ៉ា ឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា និងភ្ញៀវកិត្តិយសទាំងអស់ សូមប្រកបតែភាពសុខដុមចម្រុងចម្រើន និងសុភមង្គលគ្រប់ក្រុមគ្រួសារជានិរន្តន៍។
+                សូមគោរពជូនពរ សម្តេច ទ្រង់ ឯកឧត្តម លោកអ្នកឧកញ៉ា ឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា និងភ្ញៀវកិត្តិយសទាំងអស់ សូមប្រកបតែភាពសុខដុមចម្រុងចម្រើន និងសុភមង្គលគ្រប់ក្រុមគ្រួសារជានិរន្តន៍។
             </p>
         </section>
 
@@ -458,15 +479,15 @@
             <div class="card-ornament-top"><i class="fa-solid fa-envelope"></i></div>
             <h3 class="message-title">លិខិតសូមអភ័យទោស</h3>
             <p class="message-body">
-                យើងខ្ញុំជាមាតាបិតា កូនប្រុស - កូនស្រី
+                យើងខ្ញុំជាមាតាបិតា កូនប្រុស កូនស្រី
                 សូមអភ័យទោសក្នុងករណីពុំបានជូនសំបុត្រអញ្ជើញដោយផ្ទាល់ៗ សូមឯកឧត្តម លោកជំទាវ លោកអ្នកឧកញ៉ា
-                អ្នកឧកញ៉ា លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស
-                ក្នុងពិធីរៀបអាពាហ៍ពិពាហ៍ កូនប្រុស - កូនស្រី របស់យើងខ្ញុំ ដោយមេត្រីភាព។
+                ឧកញ៉ា លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី និងភ្ញៀវកិត្តិយសទាំងអស់
+                ក្នុងពិធីរៀបអាពាហ៍ពិពាហ៍ កូនប្រុស កូនស្រី របស់យើងខ្ញុំ ដោយមេត្រីភាព។
             </p>
         </section>
 
         <!-- ============================================== -->
-        <!-- SECTION 10: FOOTER & RETURN TO COVER           -->
+        <!-- SECTION 11: FOOTER & RETURN TO COVER           -->
         <!-- ============================================== -->
         <footer class="detail-footer">
             <div class="footer-logo">

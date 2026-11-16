@@ -26,7 +26,7 @@
     /* Warm Royal Cream & Ivory */
     --bg-cream: #faf7f2;
     --bg-cream-soft: #f3ede2;
-    --card-bg: rgba(255, 255, 255, 0.94);
+    --card-bg: rgba(243, 246, 241, 0.94);
     --card-border: rgba(21, 109, 62, 0.22);
     --shadow-soft: 0 10px 30px rgba(21, 109, 62, 0.08);
     --shadow-card: 0 8px 24px rgba(21, 109, 62, 0.12);
@@ -1055,7 +1055,110 @@ body {
 }
 
 /* ==========================================================================
-   SECTION 9: APOLOGY & THANK YOU
+   SECTION: WEDDING GIFT QR (ចំណងដៃអាពាហ៍ពិពាហ៍)
+   ========================================================================== */
+.gift-card {
+    text-align: center;
+    padding-bottom: 28px;
+}
+
+.gift-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: -12px;
+    margin-bottom: 12px;
+}
+
+.gift-description {
+    font-size: 13.5px;
+    color: var(--text-dark);
+    line-height: 1.8;
+    max-width: 360px;
+    margin: 0 auto 18px;
+    padding: 0 8px;
+}
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 18px;
+}
+
+.qr-frame {
+    position: relative;
+    max-width: 280px;
+    width: 100%;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(21, 109, 62, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(21, 109, 62, 0.22);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qr-frame:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(21, 109, 62, 0.18);
+}
+
+.qr-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.qr-action-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-save-qr {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--green-gradient);
+    color: #ffffff;
+    padding: 11px 32px;
+    border-radius: 50px;
+    font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(21, 109, 62, 0.32);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.btn-save-qr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(21, 109, 62, 0.42);
+    color: #ffffff;
+}
+
+.btn-save-qr:active {
+    transform: translateY(0);
+}
+
+.btn-save-qr.saved {
+    background: linear-gradient(135deg, #107c41 0%, #1e8e4a 100%);
+    box-shadow: 0 8px 24px rgba(16, 124, 65, 0.4);
+}
+
+.btn-save-qr i {
+    font-size: 15px;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   SECTION 10: APOLOGY & THANK YOU
    ========================================================================== */
 .message-title {
     font-family: 'Dangrek', 'Kdam Thmor Pro', 'Kantumruy Pro', sans-serif;
@@ -1578,5 +1681,9 @@ body {
         bottom: 14px;
         font-size: 11px;
         padding: 5px 12px;
+    }
+
+    .qr-frame {
+        max-width: 250px;
     }
 }

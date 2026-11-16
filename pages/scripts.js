@@ -504,3 +504,62 @@ function applyBannerTransform() {
     if (!zoomImg) return;
     zoomImg.style.transform = `translate(${bannerPanX}px, ${bannerPanY}px) scale(${bannerScale})`;
 }
+
+// ==========================================================================
+// 6. SAVE QR CODE IMAGE
+// ==========================================================================
+function saveQrImage(event) {
+    const qrUrl = '../assets/decorations/aba_qr.jpg';
+    const fileName = 'ABA_QR_Vannshee_Kanika.jpg';
+    const btn = document.getElementById('btn-save-qr');
+
+    const showSavedFeedback = () => {
+        if (!btn) return;
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> បានរក្សាទុក';
+        btn.classList.add('saved');
+        setTimeout(() => {
+            btn.innerHTML = originalHtml;
+            btn.classList.remove('saved');
+        }, 2200);
+    };
+
+    // If running on local file:// protocol, let default anchor download trigger
+    if (window.location.protocol === 'file:') {
+        showSavedFeedback();
+        return true;
+    }
+
+    if (event) event.preventDefault();
+
+    fetch(qrUrl)
+        .then(res => {
+            if (!res.ok) throw new Error('Fetch failed');
+            return res.blob();
+        })
+        .then(blob => {
+            const blobUrl = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = blobUrl;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(blobUrl);
+            }, 500);
+            showSavedFeedback();
+        })
+        .catch(() => {
+            // Fallback for browsers with strict local restrictions
+            const a = document.createElement('a');
+            a.href = qrUrl;
+            a.download = fileName;
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showSavedFeedback();
+        });
+}
